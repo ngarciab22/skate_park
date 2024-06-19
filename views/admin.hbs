@@ -1,0 +1,61 @@
+<h1>Skate Park</h1>
+
+<div class="py-4">
+  <h2>Administración</h2>
+  <hr class="w-50" />
+
+  <table class="table w-50 m-auto">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Años de experiencia</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each skaters}}
+        <tr>
+          <th scope="row">{{this.id}}</th>
+          <td><img src="{{this.foto}}" alt="" /></td>
+          <td>{{this.nombre}}</td>
+          <td>{{this.anos_experiencia}}</td>
+          <td>{{this.especialidad}}</td>
+          <td>
+            {{#if this.estado}}
+              <input
+                type="checkbox"
+                checked
+                onclick="updateStatus({{this.id}}, this)"
+              />
+            {{else}}
+              <input
+                type="checkbox"
+                onclick="updateStatus({{this.id}}, this)"
+              />
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<script>
+const updateStatus = async (id, e) => {
+  let estado = e.checked 
+    try {
+      const response = await fetch(`/updateStatus/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ estado }),
+      });
+      alert("Estado actualizado correctamente");
+      window.location.href = "/";
+    } catch (error) {
+      alert("Error al actualizar el estado");
+    }
+  }</script>

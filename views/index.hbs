@@ -1,0 +1,39 @@
+<h1>Skate Park</h1>
+<div class="py-4">
+  <h2>Lista de Participantes</h2>
+  <hr />
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Foto</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Años de experiencia</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each skaters}}
+        <tr>
+          <th scope="row">{{this.id}}</th>
+          <td><img src="{{this.foto}}" alt="" /></td>
+          <td>{{this.nombre}}</td>
+          <td>{{this.anos_experiencia}}</td>
+          <td>{{this.especialidad}}</td>
+          <td>{{#if this.estado}}
+              <p style="color: rgb(9, 241, 9);">Aprobado</p>
+            {{else}}
+              <p style="color: rgb(213, 186, 11);">En revisión</p>
+            {{/if}}</td>
+        </tr>
+      {{/each}}
+
+    </tbody>
+  </table>
+  <a href="/login">Iniciar Sesión</a>
+  |
+  <a href="/registro">Registrarme</a>
+  |
+  <a href="/admin">Administración</a>
+</div>
